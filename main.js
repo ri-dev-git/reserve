@@ -51,7 +51,7 @@ app.use("/ltc",getLTCRoute)
 // async function main(address) {
 //   // fetching the token balances
 
-//   let response = await axios({
+//   let response = await axios({   
 //     method: "post",
 //     url: baseURL,
 //     headers: {
@@ -142,7 +142,7 @@ app.use("/ltc",getLTCRoute)
 const connect_db=process.env.MONGODB_PASS
 mongoose.connect(connect_db,{
     useNewUrlParser:true,
-})
+}).then(console.log("connected"))
 
 
 app.listen(port, () => {
