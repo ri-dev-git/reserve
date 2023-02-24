@@ -2,10 +2,10 @@ const express= require('express');
 const router= express.Router();
 const axios = require("axios");
 
-router.get("/balance",(req,res)=>{
+router.get("/balance",async(req,res)=>{
 
 
-    const ltcAddress=`${req.query.address}`
+    const ltcAddress=`LKhwpV91q3MbjvRX1coUQp6X5nPERug5p9`
 
 
     const options = {
@@ -15,15 +15,9 @@ router.get("/balance",(req,res)=>{
     
       };
       
-      axios
+      const ball=await axios
         .request(options)
-        .then(function (response) {
-            console.log(response.data);
-            res.json(response.data)
-        })
-        .catch(function (error) {
-          console.error(error);
-        });
+        console.log(ball.data)
 })
 router.get("/price",(req,res)=>{
 

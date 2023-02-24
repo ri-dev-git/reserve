@@ -1,70 +1,42 @@
 const express= require('express');
 const router= express.Router();
-const axios = require("axios");
+const cron = require('node-cron');
+const {matic}=require("../db.js")
+const call=require("./utils/updateCall.js")
 
-router.get("/balance",(req,res)=>{
+const address="0x8d207B587018201efC24b288a8b87D5aEfbb9c8e"
+const options ={
+    method:"GET",
+    url:`https://api.polygonscan.com/api?module=account&action=balance&address=${address}&tag=latest&apikey=${process.env.poygonscan_api}`,
+    headers:{'content-type': 'application/json'}
+  }
+const symbol="MATIC"
+
+// cron.schedule(`${process.env.cronTimings}`,()=>{
+//     call(address,symbol,matic,options)
+// })
+
+
+router.get("/", async(req,res)=>{
+    try{
+      const val=await matic.find()
+      // .then(function(response){
+        res.json(val[0])
+      // });
+      // console.log(val[0])
+    
+    }catch(e){ 
+      console.log(e)
+      res.status(404).json(
+        {
+            "status":404,
+            "reason":"Page Not Found"
+        }
+    )
+    }
+         
+  })
   
-    async function getMaticBalance() {
-        
-        const addresses=`${req.query.address}`
-        const config = {
-            method: 'get',
-            url: `https://api.polygonscan.com/api?module=account&action=balancemulti&address=${addresses}&tag=latest&apikey=${process.env.poygonscan_api}`,
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            }
-        };
-        
-        axios(config)
-            .then(function (response) {
-                // console.log(response["data"]["result"])
-                res.json(response["data"]["result"])
-            })
-            .catch(function (error) {
-                console.log(error);
-                res.status(404).json(
-                    {
-                        "status":404,
-                        "reason":error
-                    }
-                )
-            });
-            
-            
-      }
+  
 
-        //   main(walletAddress[i]);
-        
-          getMaticBalance();
-
-      
-})
-
-router.get("/price",(req,res)=>{
-
-    const options = {
-        method: 'GET',
-        url: `https://rest.coinapi.io/v1/exchangerate/MATIC/USD`,
-        headers: {accept: 'application/json', 'content-type': 'application/json',
-        "X-CoinAPI-Key":`${process.env.coin_api}`},
-        // data: {
-        //   id: 1,
-        //   jsonrpc: '2.0',
-        //   method: 'getBalance',
-        //   params: ['7pJbLMNFXqaqr2qnoZmJWuc3mcE14TPWbTs2kjyFwmKm']
-        // }
-      };
-      
-      axios
-        .request(options)
-        .then(function (response) {
-            console.log(response.data);
-            res.json(response.data)
-        })
-        .catch(function (error) {
-          console.error(error);
-        });
-
-})
 module.exports = router;

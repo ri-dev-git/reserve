@@ -16,4 +16,4 @@ const ada=mongoose.model('ada',reserveSchema)
 const link=mongoose.model('link',reserveSchema)
 const ltc=mongoose.model('ltc',reserveSchema)
 const uni=mongoose.model('uni',reserveSchema)
-module.exports={eth,btc,sol}
+module.exports={eth,btc,sol,matic,link,dot,avax,atom,ltc,uni,ada}
