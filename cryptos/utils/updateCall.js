@@ -1,6 +1,6 @@
 const axios = require("axios");
 const makeAxiosCall=async(address,symbol,coll,options)=>{
-    console.log
+  
     var bal=0;
     
     bal = await axios.request(options)
@@ -106,8 +106,91 @@ const makeAxiosCall=async(address,symbol,coll,options)=>{
                 
               }
             break;
+        case "ADA":
+          if(documentCount==0){
+            console.log("hello")
+              coll.create({address:`${address}`,balance:`${bal.data.amount[0].quantity}`,price:`${price.data.rate}`},function(err, res) {
+                if (err) throw err;
+                console.log("1 document inserted")
+              })
+        }else{
+            var myquery = { address: `${address}` };
+            var newvalues = { $set: {price:`${price.data.rate}`,balance:`${bal.data.amount[0].quantity}` } };
+            
+            coll.updateOne(myquery, newvalues, function(err, res) {
+              if (err) throw err;
+            })
+            
+          }
+        break;
+        case "AVAX":
+          if(documentCount==0){
+            console.log("hello")
+            coll.create({address:`${address}`,balance:`${bal.data.result}`,price:`${price.data.rate}`},function(err, res) {
+              if (err) throw err;
+              console.log("1 document inserted")
+            })
+          }else{
+          var myquery = { address: `${address}` };
+          var newvalues = { $set: { price: `${price.data.rate}`,balance:`${bal.data.result}` } };
+          
+          coll.updateOne(myquery, newvalues, function(err, res) {
+            if (err) throw err;
+          })
+          
+          }
+        break;
+        case "LTC":
+          if(documentCount==0){
+            console.log("hello")
+              coll.create({address:`${address}`,balance:`${bal.data.balance}`,price:`${price.data.rate}`},function(err, res) {
+                if (err) throw err;
+                console.log("1 document inserted")
+              })
+        }else{
+            var myquery = { address: `${address}` };
+            var newvalues = { $set: {price:`${price.data.rate}`,balance:`${bal.data.balance}` } };
+            
+            coll.updateOne(myquery, newvalues, function(err, res) {
+              if (err) throw err;
+            })
+            
+          }
+        break;
+        case "LINK":
+          if(documentCount==0){
+            console.log("hello")
+            coll.create({address:`${address}`,balance:`${bal.data.result}`,price:`${price.data.rate}`},function(err, res) {
+              if (err) throw err;
+              console.log("1 document inserted")
+            })
+          }else{
+          var myquery = { address: `${address}` };
+          var newvalues = { $set: { price: `${price.data.rate}`,balance:`${bal.data.result}` } };
+          
+          coll.updateOne(myquery, newvalues, function(err, res) {
+            if (err) throw err;
+          })
+          
+          }
+          break;
+          case "UNI":
+            if(documentCount==0){
+              console.log("hello")
+              coll.create({address:`${address}`,balance:`${bal.data.result}`,price:`${price.data.rate}`},function(err, res) {
+                if (err) throw err;
+                console.log("1 document inserted")
+              })
+            }else{
+            var myquery = { address: `${address}` };
+            var newvalues = { $set: { price: `${price.data.rate}`,balance:`${bal.data.result}` } };
+            
+            coll.updateOne(myquery, newvalues, function(err, res) {
+              if (err) throw err;
+            })
+            
+            }
         }
-
 }
 
 module.exports=makeAxiosCall
