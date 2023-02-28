@@ -190,6 +190,25 @@ const makeAxiosCall=async(address,symbol,coll,options)=>{
             })
             
             }
+            break;
+          case "ATOM":
+            if(documentCount==0){
+              console.log("hello")
+              coll.create({address:`${address}`,balance:`${bal.data.result}`,price:`${price.data.rate}`},function(err, res) {
+                if (err) throw err;
+                console.log("1 document inserted")
+              })
+            }else{
+            var myquery = { address: `${address}` };
+            
+            var newvalues = { $set: { price: `${price.data.rate}`,balance:`${bal.data.balances}` } };
+            
+            coll.updateOne(myquery, newvalues, function(err, res) {
+              if (err) throw err;
+            })
+            
+            }
+          break;
         }
 }
 

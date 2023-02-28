@@ -5,13 +5,18 @@ const reserveSchema = mongoose.Schema({
     balance:String,
     price:String
 })
+const atomSchema=mongoose.Schema({
+    address:String,
+    balance:Object,
+    price:String
+})
 const btc=mongoose.model('btc',reserveSchema)
 const eth=mongoose.model('eth',reserveSchema)
 const sol=mongoose.model('sol',reserveSchema)
 const matic=mongoose.model('matic',reserveSchema)
 const dot=mongoose.model('dot',reserveSchema)
 const avax=mongoose.model('avax',reserveSchema)
-const atom=mongoose.model('atom',reserveSchema)
+const atom=mongoose.model('atom',atomSchema)
 const ada=mongoose.model('ada',reserveSchema)
 const link=mongoose.model('link',reserveSchema)
 const ltc=mongoose.model('ltc',reserveSchema)

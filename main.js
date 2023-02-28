@@ -44,7 +44,7 @@ app.use("/avax",getAVAXRoute)
 app.use("/dot",getDOTRoute)
 app.use("/link",getLINKRoute)
 app.use("/ltc",getLTCRoute)
-// app.use("/atom",getATOMRoute)
+app.use("/atom",getATOMRoute)
 app.use("/uni",getUNIRoute)
 
 
