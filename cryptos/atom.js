@@ -9,13 +9,13 @@ const call=require("./utils/updateCall.js")
   const address="cosmos1p3ucd3ptpw902fluyjzhq3ffgq4ntddac9sa3s"
   const options ={
     method:"GET",
-    url:`https://cosmoshub.rest.stakin-nodes.com/cosmos/bank/v1beta1/balances/${address}`,
+    url:`https://rest.cosmos.directory/cosmoshub/cosmos/bank/v1beta1/balances/${address}`,
     headers:{'content-type': 'application/json'}
   }
   const symbol="ATOM"
   
 // cron.schedule(`${process.env.cronTimings}`,()=>{
-    call(address,symbol,atom,options)
+    // call(address,symbol,atom,options)
 // })
 
 router.get("/", async(req,res)=>{
@@ -42,7 +42,7 @@ router.get("/", async(req,res)=>{
 // const { QueryClient } = require("@cosmjs/stargate");
 // const { Bank } = require("@cosmjs/stargate/build/modules/bank/queries.js")
 // const bank=cosmos.bank
-// const rpcEndpoint = "https://rpc.cosmos.network:26657 ";
+// const rpcEndpoint = "";
 
 // async function getAccountBalance(address, denom) {
 //   const tendermintClient = await Tendermint34Client.connect(rpcEndpoint);

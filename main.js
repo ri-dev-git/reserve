@@ -32,6 +32,7 @@ const getLINKRoute=require("./cryptos/link.js")
 const getLTCRoute=require("./cryptos/ltc.js")
 const getATOMRoute=require("./cryptos/atom.js")
 const getUNIRoute=require("./cryptos/uni.js")
+const getBBGCIRoute=require("./cryptos/bitSave.js")
 
 
 app.use("/eth",getETHRoute)

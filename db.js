@@ -2,13 +2,13 @@ const mongoose= require('mongoose');
 
 const reserveSchema = mongoose.Schema({
     address:String,
-    balance:String,
-    price:String
+    balance:Number,
+    price:Number
 })
-const atomSchema=mongoose.Schema({
+const bbgciSchema = mongoose.Schema({
     address:String,
-    balance:Object,
-    price:String
+    totalSupply:Number,
+    price:Number
 })
 const btc=mongoose.model('btc',reserveSchema)
 const eth=mongoose.model('eth',reserveSchema)
@@ -16,9 +16,10 @@ const sol=mongoose.model('sol',reserveSchema)
 const matic=mongoose.model('matic',reserveSchema)
 const dot=mongoose.model('dot',reserveSchema)
 const avax=mongoose.model('avax',reserveSchema)
-const atom=mongoose.model('atom',atomSchema)
+const atom=mongoose.model('atom',reserveSchema)
 const ada=mongoose.model('ada',reserveSchema)
 const link=mongoose.model('link',reserveSchema)
 const ltc=mongoose.model('ltc',reserveSchema)
 const uni=mongoose.model('uni',reserveSchema)
-module.exports={eth,btc,sol,matic,link,dot,avax,atom,ltc,uni,ada}
+const BitSave=mongoose.model('BitSave',bbgciSchema)
+module.exports={eth,btc,sol,matic,link,dot,avax,atom,ltc,uni,ada,BitSave}

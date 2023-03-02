@@ -14,7 +14,7 @@ const call=require("./utils/updateCall.js")
   const symbol="BTC"
   
 // cron.schedule(`${process.env.cronTimings}`,()=>{
-    //call(address,symbol,btc,options)
+    call(address,symbol,btc,options)
 // })
 
 router.get("/", async(req,res)=>{
