@@ -7,7 +7,7 @@ const {sol}=require('../db.js')
 const call=require("./utils/updateCall.js")
 
 
-  const address="7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU"
+  const address="2wrinNutMdqStHDVyXoPzo5S16yUbaAta5buzWPYmW2h"
   const options ={
     method: 'POST',
     url: `https://solana-mainnet.g.alchemy.com/v2/${process.env.alchemy_solana_api}`,
@@ -21,9 +21,9 @@ const call=require("./utils/updateCall.js")
   };
   const symbol="SOL"
   
-// cron.schedule(`${process.env.cronTimings}`,()=>{
-    // call(address,symbol,sol,options)
-// })
+  cron.schedule(`${process.env.cronTimings}`,()=>{
+    call(address,symbol,sol,options) 
+})
 
 router.get("/", async(req,res)=>{
   try{

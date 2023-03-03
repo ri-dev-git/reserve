@@ -13,9 +13,9 @@ const options ={
 }
 const symbol="LTC"
 
-// cron.schedule(`${process.env.cronTimings}`,()=>{  
-    // call(address,symbol,ltc,options)
-// })
+cron.schedule(`${process.env.cronTimings}`,()=>{  
+  call(address,symbol,ltc,options)
+})
 
 
   router.get("/", async(req,res)=>{

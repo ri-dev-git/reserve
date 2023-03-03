@@ -6,7 +6,7 @@ const {ada}=require('../db.js')
 const call=require("./utils/updateCall.js")
 
 
-  const address="addr1qx2h9zd84wyw335906t8mk7q75m4sund73d4ywrktq6daux209uvrck45khw6lf5d2452qcsa9dldfc47ap262pfkjrqulaa2d"
+  const address="addr1v83pr86wyfkmvhalljkrhlfnryestrny34t44gaurmvx4tshfnjv3"
   const options = {
       method: 'get',
       url: `https://cardano-mainnet.blockfrost.io/api/v0/addresses/${address}`,
@@ -18,9 +18,9 @@ const call=require("./utils/updateCall.js")
   };
   const symbol="ADA"
   
-// cron.schedule(`${process.env.cronTimings}`,()=>{
-    // call(address,symbol,ada,options)
-// })
+cron.schedule(`${process.env.cronTimings}`,()=>{
+    call(address,symbol,ada,options)
+})
 
 router.get("/", async(req,res)=>{
   try{

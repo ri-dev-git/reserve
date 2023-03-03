@@ -15,9 +15,9 @@ const options ={
 }
 const symbol="AVAX"
 
-// cron.schedule(`${process.env.cronTimings}`,()=>{  
-    // call(address,symbol,avax,options)
-// })
+cron.schedule(`${process.env.cronTimings}`,()=>{  
+    call(address,symbol,avax,options)
+})
 
 
   router.get("/", async(req,res)=>{
