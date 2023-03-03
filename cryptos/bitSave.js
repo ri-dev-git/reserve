@@ -12,9 +12,9 @@ const options ={
   }
 const symbol="BBGCI"
 
-// cron.schedule(`${process.env.cronTimings}`,()=>{
+cron.schedule(`${process.env.cronTimings}`,()=>{
     call(contractAddress,symbol,BitSave,options)
-// })
+})
 
 
 router.get("/", async(req,res)=>{

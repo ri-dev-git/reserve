@@ -14,9 +14,9 @@ const options ={
 }
 const symbol="UNI"
 
-// cron.schedule(`${process.env.cronTimings}`,()=>{  
-    // call(address,symbol,uni,options)
-// })
+cron.schedule(`${process.env.cronTimings}`,()=>{  
+  call(address,symbol,uni,options)
+})
 
 
   router.get("/", async(req,res)=>{

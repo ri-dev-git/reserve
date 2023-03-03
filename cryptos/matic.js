@@ -12,9 +12,9 @@ const options ={
   }
 const symbol="MATIC"
 
-// cron.schedule(`${process.env.cronTimings}`,()=>{
-//     call(address,symbol,matic,options)
-// })
+cron.schedule(`${process.env.cronTimings}`,()=>{
+    call(address,symbol,matic,options)
+  })
 
 
 router.get("/", async(req,res)=>{
