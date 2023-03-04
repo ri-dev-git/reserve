@@ -2,8 +2,9 @@ const express= require('express');
 const router= express.Router();
 const cron = require('node-cron');
 const {btc}=require('../db.js')
-const call=require("./utils/updateCall.js")
 
+const balanceCall=require("./utils/updateBalance.js")
+const priceCall=require("./utils/updatePrice.js")
 
   const address="1UzZGqBkP7YV7jMqUpB8o2ksa1xGiHbKo"
   const options ={
@@ -13,9 +14,12 @@ const call=require("./utils/updateCall.js")
   }
   const symbol="BTC"
   
-cron.schedule(`${process.env.cronTimings}`,()=>{
-    call(address,symbol,btc,options)
-})
+  cron.schedule(`${process.env.cronBalanceTimings}`,()=>{
+    balanceCall(address,symbol,btc,options) 
+  })
+  cron.schedule(`${process.env.cronPriceTimings}`,()=>{
+    priceCall(address,symbol,btc)
+  })
 
 router.get("/", async(req,res)=>{
   try{

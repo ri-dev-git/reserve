@@ -3,10 +3,11 @@ const router= express.Router();
 const axios = require("axios");
 const cron = require('node-cron');
 const {ada}=require('../db.js')
-const call=require("./utils/updateCall.js")
+const balanceCall=require("./utils/updateBalance.js")
+const priceCall=require("./utils/updatePrice.js")
 
 
-  const address="addr1v83pr86wyfkmvhalljkrhlfnryestrny34t44gaurmvx4tshfnjv3"
+  const address="addr1z8snz7c4974vzdpxu65ruphl3zjdvtxw8strf2c2tmqnxz2j2c79gy9l76sdg0xwhd7r0c0kna0tycz4y5s6mlenh8pq0xmsha"
   const options = {
       method: 'get',
       url: `https://cardano-mainnet.blockfrost.io/api/v0/addresses/${address}`,
@@ -18,10 +19,12 @@ const call=require("./utils/updateCall.js")
   };
   const symbol="ADA"
   
-cron.schedule(`${process.env.cronTimings}`,()=>{
-    call(address,symbol,ada,options)
+cron.schedule(`${process.env.cronBalanceTimings}`,()=>{
+  balanceCall(address,symbol,ada,options) 
 })
-
+cron.schedule(`${process.env.cronPriceTimings}`,()=>{
+  priceCall(address,symbol,ada)
+})
 router.get("/", async(req,res)=>{
   try{
     const val=await ada.find()

@@ -47,7 +47,7 @@ app.use("/link",getLINKRoute)
 app.use("/ltc",getLTCRoute)
 app.use("/atom",getATOMRoute)
 app.use("/uni",getUNIRoute)
-
+app.use("/bitSave",getBBGCIRoute)
 
 const connect_db=process.env.MONGODB_PASS
 mongoose.connect(connect_db,{

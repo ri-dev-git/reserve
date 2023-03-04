@@ -3,7 +3,8 @@ const router= express.Router();
 const axios = require("axios");
 const {uni}=require('../db.js')
 const cron = require('node-cron');
-const call=require("./utils/updateCall.js")
+const balanceCall=require("./utils/updateBalance.js")
+const priceCall=require("./utils/updatePrice.js")
 
 const address="0x8d207B587018201efC24b288a8b87D5aEfbb9c8e"
 const uniETH="0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"
@@ -14,8 +15,11 @@ const options ={
 }
 const symbol="UNI"
 
-cron.schedule(`${process.env.cronTimings}`,()=>{  
-  call(address,symbol,uni,options)
+cron.schedule(`${process.env.cronBalanceTimings}`,()=>{
+  balanceCall(address,symbol,uni,options) 
+})
+cron.schedule(`${process.env.cronPriceTimings}`,()=>{
+  priceCall(address,symbol,uni)
 })
 
 

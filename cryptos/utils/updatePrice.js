@@ -1,11 +1,6 @@
 const axios = require("axios");
-const makeAxiosCall=async(address,symbol,coll,options)=>{
+const makePriceCall=async(address,symbol,coll)=>{
   
-    var bal;
-    
-    bal = await axios.request(options)
-    
-    console.log(bal.data,"565")
     
       const priceOptions = {
                 method: 'GET',
@@ -19,21 +14,23 @@ const makeAxiosCall=async(address,symbol,coll,options)=>{
       const price=symbol=="BBGCI"?1:await axios.request(priceOptions)
       
       const documentCount = await coll.countDocuments({});
-
+      const data=price.data
+      console.log(data.rate)
 
       switch(symbol){
         case "ETH":
             if(documentCount==0){
                 console.log("hello")
-                coll.create({address:`${address}`,balance:`${parseInt(bal.data.result)/10**18}`,price:`${price.data.rate}`},function(err, res) {
+                coll.create({address:`${address}`,price:`${data.rate}`},function(err, res) {
                   if (err) throw err;
                   console.log("1 document inserted")
                 })
               }else{
               var myquery = { address: `${address}` };
-              var newvalues = { $set: { price: `${price.data.rate}`,balance:`${parseInt(bal.data.result)/10**18}` } };
+              var newvalues = { $set: { price: `${data.rate}`} };
               
               coll.updateOne(myquery, newvalues, function(err, res) {
+                console.log("yo")
                 if (err) throw err;
               })
               
@@ -42,13 +39,13 @@ const makeAxiosCall=async(address,symbol,coll,options)=>{
         case "BTC":
             if(documentCount==0){
                 console.log("hello")
-                  coll.create({address:`${address}`,balance:`${parseInt(bal.data.final_balance)/10**8}`,price:`${price.data.rate}`},function(err, res) {
+                  coll.create({address:`${address}`,price:`${data.rate}`},function(err, res) {
                     if (err) throw err;
                     console.log("1 document inserted")
                   })
             }else{
                 var myquery = { address: `${address}` };
-                var newvalues = { $set: {price:`${price.data.rate}`,balance:`${parseInt(bal.data.final_balance)/10**8}` } };
+                var newvalues = { $set: {price:`${data.rate}` } };
                 
                 coll.updateOne(myquery, newvalues, function(err, res) {
                   if (err) throw err;
@@ -59,13 +56,13 @@ const makeAxiosCall=async(address,symbol,coll,options)=>{
         case "MATIC":
             if(documentCount==0){
                 console.log("hello")
-                coll.create({address:`${address}`,balance:`${parseInt(bal.data.result)/10**18}`,price:`${price.data.rate}`},function(err, res) {
+                coll.create({address:`${address}`,price:`${data.rate}`},function(err, res) {
                   if (err) throw err;
                   console.log("1 document inserted")
                 })
               }else{
               var myquery = { address: `${address}` };
-              var newvalues = { $set: { price: `${price.data.rate}`,balance:`${parseInt(bal.data.result)/10**18}` } };
+              var newvalues = { $set: { price: `${data.rate}` } };
               
               coll.updateOne(myquery, newvalues, function(err, res) {
                 if (err) throw err;
@@ -77,13 +74,13 @@ const makeAxiosCall=async(address,symbol,coll,options)=>{
             if(documentCount==0){
   
                 console.log("hello")
-                  coll.create({address:`${address}`,balance:bal.data.code?0:`${parseInt(bal.data.data.account.balance)/10**10}`,price:`${price.data.rate}`},function(err, res) {
+                  coll.create({address:`${address}`,price:`${data.rate}`},function(err, res) {
                     if (err) throw err;
                     console.log("1 document inserted")
                   })
             }else{
                 var myquery = { address: `${address}` };
-                var newvalues = { $set: {price:`${price.data.rate}`,balance:bal.data.code?0:`${parseInt(bal.data.data.account.balance)/10**10}`} };
+                var newvalues = { $set: {price:`${data.rate}`} };
                 
                 coll.updateOne(myquery, newvalues, function(err, res) {
                   if (err) throw err;
@@ -94,13 +91,13 @@ const makeAxiosCall=async(address,symbol,coll,options)=>{
         case "SOL":
             if(documentCount==0){
                 console.log("hello")
-                  coll.create({address:`${address}`,balance:`${parseInt(bal.data.result.value)/10**9}`,price:`${price.data.rate}`},function(err, res) {
+                  coll.create({address:`${address}`,price:`${data.rate}`},function(err, res) {
                     if (err) throw err;
                     console.log("1 document inserted")
                   })
             }else{
                 var myquery = { address: `${address}` };
-                var newvalues = { $set: {price:`${price.data.rate}`,balance:`${parseInt(bal.data.result.value)/10**9}` } };
+                var newvalues = { $set: {price:`${data.rate}` } };
                 
                 coll.updateOne(myquery, newvalues, function(err, res) {
                   if (err) throw err;
@@ -111,13 +108,13 @@ const makeAxiosCall=async(address,symbol,coll,options)=>{
         case "ADA":
           if(documentCount==0){
             console.log("hello")
-              coll.create({address:`${address}`,balance:`${parseInt(bal.data.amount[0].quantity)/10**6}`,price:`${price.data.rate}`},function(err, res) {
+              coll.create({address:`${address}`,price:`${data.rate}`},function(err, res) {
                 if (err) throw err;
                 console.log("1 document inserted")
               })
         }else{
             var myquery = { address: `${address}` };
-            var newvalues = { $set: {price:`${price.data.rate}`,balance:`${parseInt(bal.data.amount[0].quantity)/10**6}` } };
+            var newvalues = { $set: {price:`${data.rate}` } };
             
             coll.updateOne(myquery, newvalues, function(err, res) {
               if (err) throw err;
@@ -128,13 +125,13 @@ const makeAxiosCall=async(address,symbol,coll,options)=>{
         case "AVAX":
           if(documentCount==0){
             console.log("hello")
-            coll.create({address:`${address}`,balance:`${parseInt(bal.data.result)/10**18}`,price:`${price.data.rate}`},function(err, res) {
+            coll.create({address:`${address}`,price:`${data.rate}`},function(err, res) {
               if (err) throw err;
               console.log("1 document inserted")
             })
           }else{
           var myquery = { address: `${address}` };
-          var newvalues = { $set: { price: `${price.data.rate}`,balance:`${parseInt(bal.data.result)/10**18}` } };
+          var newvalues = { $set: { price: `${data.rate}` } };
           
           coll.updateOne(myquery, newvalues, function(err, res) {
             if (err) throw err;
@@ -145,13 +142,13 @@ const makeAxiosCall=async(address,symbol,coll,options)=>{
         case "LTC":
           if(documentCount==0){
             console.log("hello")
-              coll.create({address:`${address}`,balance:`${parseInt(bal.data.final_balance)/10**8}`,price:`${price.data.rate}`},function(err, res) {
+              coll.create({address:`${address}`,price:`${data.rate}`},function(err, res) {
                 if (err) throw err;
                 console.log("1 document inserted")
               })
         }else{
             var myquery = { address: `${address}` };
-            var newvalues = { $set: {price:`${price.data.rate}`,balance:`${parseInt(bal.data.final_balance)/10**8}` } };
+            var newvalues = { $set: {price:`${data.rate}` } };
             
             coll.updateOne(myquery, newvalues, function(err, res) {
               if (err) throw err;
@@ -162,13 +159,13 @@ const makeAxiosCall=async(address,symbol,coll,options)=>{
         case "LINK":
           if(documentCount==0){
             console.log("hello")
-            coll.create({address:`${address}`,balance:`${parseInt(bal.data.result)/10**18}`,price:`${price.data.rate}`},function(err, res) {
+            coll.create({address:`${address}`,price:`${data.rate}`},function(err, res) {
               if (err) throw err;
               console.log("1 document inserted")
             })
           }else{
           var myquery = { address: `${address}` };
-          var newvalues = { $set: { price: `${price.data.rate}`,balance:`${parseInt(bal.data.result)/10**18}` } };
+          var newvalues = { $set: { price: `${data.rate}` } };
           
           coll.updateOne(myquery, newvalues, function(err, res) {
             if (err) throw err;
@@ -179,13 +176,13 @@ const makeAxiosCall=async(address,symbol,coll,options)=>{
           case "UNI":
             if(documentCount==0){
               console.log("hello")
-              coll.create({address:`${address}`,balance:`${parseInt(bal.data.result)/10**18}`,price:`${price.data.rate}`},function(err, res) {
+              coll.create({address:`${address}`,price:`${data.rate}`},function(err, res) {
                 if (err) throw err;
                 console.log("1 document inserted")
               })
             }else{
             var myquery = { address: `${address}` };
-            var newvalues = { $set: { price: `${price.data.rate}`,balance:`${parseInt(bal.data.result)/10**18}` } };
+            var newvalues = { $set: { price: `${data.rate}` } };
             
             coll.updateOne(myquery, newvalues, function(err, res) {
               if (err) throw err;
@@ -196,36 +193,17 @@ const makeAxiosCall=async(address,symbol,coll,options)=>{
           case "ATOM":
             
             if(documentCount==0){
-              if(bal.data.balances.length==0){
-                var u={
-                  amount:"0"
-                }
-              }else{
-                var u=bal.data.balances.find(den=>{
-                  return den.denom==="uatom"
-                })
-              }
+             
               console.log("hello")
-              coll.create({address:`${address}`,balance:`${parseInt(u.amount)/10**6}`,price:`${price.data.rate}`},function(err, res) {
+              coll.create({address:`${address}`,price:`${data.rate}`},function(err, res) {
                 if (err) throw err;
                 console.log("1 document inserted")
               })
             }else{
 
-              if(bal.data.balances.length==0){
-                var u={
-                  amount:"0"
-                }
-              }else{
-                var u=bal.data.balances.find(den=>{
-                  return den.denom==="uatom"
-                })
-              }
-              
-    
               var myquery = { address: `${address}` };
             
-            var newvalues = { $set: { price: `${price.data.rate}`,balance:`${parseInt(u.amount)/10**6}` } };
+            var newvalues = { $set: { price: `${data.rate}` } };
             
             coll.updateOne(myquery, newvalues, function(err, res) {
               if (err) throw err;
@@ -236,21 +214,20 @@ const makeAxiosCall=async(address,symbol,coll,options)=>{
           case "BBGCI":
             if(documentCount==0){
               console.log("hello")
-              coll.create({address:`${address}`,totalSupply:`${bal.data.result/10**18}`,price:`${price}`},function(err, res) {
+              coll.create({address:`${address}`,price:`${price}`},function(err, res) {
                 if (err) throw err;
                 console.log("1 document inserted")
               })
             }else{
             var myquery = { address: `${address}` };
-            var newvalues = { $set: { price: `${price}`,totalSupply:`${parseInt(bal.data.result)/10**18}` } };
+            var newvalues = { $set: { price: `${price}`} } };
             
             coll.updateOne(myquery, newvalues, function(err, res) {
               if (err) throw err;
             })
             
-            }
-          break
+            break;
         }
-}
+    }
 
-module.exports=makeAxiosCall
+    module.exports=makePriceCall

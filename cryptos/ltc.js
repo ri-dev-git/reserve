@@ -3,7 +3,8 @@ const router= express.Router();
 const axios = require("axios");
 const {ltc}=require('../db.js')
 const cron = require('node-cron');
-const call=require("./utils/updateCall.js")
+const balanceCall=require("./utils/updateBalance.js")
+const priceCall=require("./utils/updatePrice.js")
 
 const address=`LKhwpV91q3MbjvRX1coUQp6X5nPERug5p9`
 const options ={
@@ -13,11 +14,12 @@ const options ={
 }
 const symbol="LTC"
 
-cron.schedule(`${process.env.cronTimings}`,()=>{  
-  call(address,symbol,ltc,options)
+cron.schedule(`${process.env.cronBalanceTimings}`,()=>{
+  balanceCall(address,symbol,ltc,options) 
 })
-
-
+cron.schedule(`${process.env.cronPriceTimings}`,()=>{
+  priceCall(address,symbol,ltc)
+})
   router.get("/", async(req,res)=>{
     try{
       const val=await ltc.find()

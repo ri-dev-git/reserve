@@ -2,7 +2,8 @@ const express= require('express');
 const router= express.Router();
 const cron = require('node-cron');
 const {matic}=require("../db.js")
-const call=require("./utils/updateCall.js")
+const balanceCall=require("./utils/updateBalance.js")
+const priceCall=require("./utils/updatePrice.js")
 
 const address="0x8d207B587018201efC24b288a8b87D5aEfbb9c8e"
 const options ={
@@ -12,10 +13,12 @@ const options ={
   }
 const symbol="MATIC"
 
-cron.schedule(`${process.env.cronTimings}`,()=>{
-    call(address,symbol,matic,options)
-  })
-
+cron.schedule(`${process.env.cronBalanceTimings}`,()=>{
+  balanceCall(address,symbol,matic,options) 
+})
+cron.schedule(`${process.env.cronPriceTimings}`,()=>{
+  priceCall(address,symbol,matic)
+})
 
 router.get("/", async(req,res)=>{
     try{
