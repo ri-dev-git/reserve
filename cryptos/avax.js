@@ -1,7 +1,6 @@
 const express= require('express');
 const router= express.Router();
 const axios = require("axios");
-
 const {avax}=require('../db.js')
 const cron = require('node-cron');
 const balanceCall=require("./utils/updateBalance.js")

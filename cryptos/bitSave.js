@@ -13,10 +13,10 @@ const options ={
 const symbol="BBGCI"
 
 cron.schedule(`${process.env.cronBalanceTimings}`,()=>{
-  balanceCall(address,symbol,BitSave,options) 
+  balanceCall(contractAddress,symbol,BitSave,options) 
 })
 cron.schedule(`${process.env.cronPriceTimings}`,()=>{
-  priceCall(address,symbol,BitSave)
+  priceCall(contractAddress,symbol,BitSave)
 })
 router.get("/", async(req,res)=>{
     try{

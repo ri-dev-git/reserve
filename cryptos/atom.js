@@ -6,7 +6,7 @@ const {atom}=require('../db.js')
 const balanceCall=require("./utils/updateBalance.js")
 const priceCall=require("./utils/updatePrice.js")
 
-  const address="cosmos1q495d5hhr6m63t0c72y8wdl850yymcjk6kpgkk"
+  const address="cosmos1p3ucd3ptpw902fluyjzhq3ffgq4ntddac9sa3s"
   const options ={
     method:"GET",
     url:`https://rest.cosmos.directory/cosmoshub/cosmos/bank/v1beta1/balances/${address}`,
