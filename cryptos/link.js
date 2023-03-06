@@ -3,8 +3,8 @@ const router= express.Router();
 const axios = require("axios");
 const {link}=require('../db.js')
 const cron = require('node-cron');
-const call=require("./utils/updateCall.js")
-
+const balanceCall=require("./utils/updateBalance.js")
+const priceCall=require("./utils/updatePrice.js")
 const address="0x8d207B587018201efC24b288a8b87D5aEfbb9c8e"
 const linkETH="0x514910771AF9Ca656af840dff83E8264EcF986CA"
 const options ={
@@ -14,11 +14,12 @@ const options ={
 }
 const symbol="LINK"
 
-cron.schedule(`${process.env.cronTimings}`,()=>{  
-  call(address,symbol,link,options)
+cron.schedule(`${process.env.cronBalanceTimings}`,()=>{
+  balanceCall(address,symbol,link,options) 
 })
-
-
+cron.schedule(`${process.env.cronPriceTimings}`,()=>{
+  priceCall(address,symbol,link)
+})
   router.get("/", async(req,res)=>{
     try{
       const val=await link.find()

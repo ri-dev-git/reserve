@@ -3,7 +3,8 @@ const router= express.Router();
 const axios = require("axios");
 const cron = require('node-cron');
 const {ada}=require('../db.js')
-const call=require("./utils/updateCall.js")
+const balanceCall=require("./utils/updateBalance.js")
+const priceCall=require("./utils/updatePrice.js")
 
 
   const address="addr1v83pr86wyfkmvhalljkrhlfnryestrny34t44gaurmvx4tshfnjv3"
@@ -18,10 +19,12 @@ const call=require("./utils/updateCall.js")
   };
   const symbol="ADA"
   
-cron.schedule(`${process.env.cronTimings}`,()=>{
-    call(address,symbol,ada,options)
+cron.schedule(`${process.env.cronBalanceTimings}`,()=>{
+  balanceCall(address,symbol,ada,options) 
 })
-
+cron.schedule(`${process.env.cronPriceTimings}`,()=>{
+  priceCall(address,symbol,ada)
+})
 router.get("/", async(req,res)=>{
   try{
     const val=await ada.find()

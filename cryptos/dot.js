@@ -3,8 +3,8 @@ const router= express.Router();
 const axios = require("axios");
 const cron = require('node-cron');
 const {dot}=require('../db.js')
-const call=require("./utils/updateCall.js")
-
+const balanceCall=require("./utils/updateBalance.js")
+const priceCall=require("./utils/updatePrice.js")
 
   const address="1euducCmquVEKxHPQePAoqQi9oHNtkesP3vNu1jcGMoW9rk"
   const options ={
@@ -21,9 +21,12 @@ const call=require("./utils/updateCall.js")
 };
   const symbol="DOT"
   
-cron.schedule(`${process.env.cronTimings}`,()=>{
-  call(address,symbol,dot,options)
-})
+  cron.schedule(`${process.env.cronBalanceTimings}`,()=>{
+    balanceCall(address,symbol,dot,options) 
+  })
+  cron.schedule(`${process.env.cronPriceTimings}`,()=>{
+    priceCall(address,symbol,dot)
+  })
 
 router.get("/", async(req,res)=>{
   try{
