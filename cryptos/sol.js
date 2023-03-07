@@ -21,10 +21,10 @@ const priceCall=require("./utils/updatePrice.js")
   };
   const symbol="SOL"
   
-  cron.schedule(`${process.env.cronBalanceTimings}`,()=>{
+  cron.schedule(`30 5 * * *`,()=>{
     balanceCall(address,symbol,sol,options) 
   })
-  cron.schedule(`${process.env.cronPriceTimings}`,()=>{
+  cron.schedule(`30 2 * * *`,()=>{
     priceCall(address,symbol,sol)
   })
 

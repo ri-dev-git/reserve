@@ -5,7 +5,7 @@ const makeAxiosCall=async(address,symbol,coll,options)=>{
     
     bal = await axios.request(options)
     
-    // console.log(bal.data,"565")
+    console.log(bal.data,"565")
     
      
       

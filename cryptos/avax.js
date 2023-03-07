@@ -13,10 +13,10 @@ const options ={
   headers:{'content-type': 'application/json'}
 }
 const symbol="AVAX"
-cron.schedule(`${process.env.cronBalanceTimings}`,()=>{
+cron.schedule(`30 5 * * *`,()=>{
   balanceCall(address,symbol,avax,options) 
 })
-cron.schedule(`${process.env.cronPriceTimings}`,()=>{
+cron.schedule(`30 2 * * *`,()=>{
   priceCall(address,symbol,avax)
 })
 
