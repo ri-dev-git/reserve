@@ -13,10 +13,10 @@ const options ={
 }
 const symbol="ETH"
 
-cron.schedule(`${process.env.cronBalanceTimings}`,()=>{
+cron.schedule(`30 5 * * *`,()=>{
   balanceCall(address,symbol,eth,options) 
 })
-cron.schedule(`${process.env.cronPriceTimings}`,()=>{
+cron.schedule(`30 2 * * *`,()=>{
   priceCall(address,symbol,eth)
 })
 

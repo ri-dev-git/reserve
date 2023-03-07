@@ -14,10 +14,10 @@ const options ={
 }
 const symbol="LINK"
 
-cron.schedule(`${process.env.cronBalanceTimings}`,()=>{
+cron.schedule(`30 5 * * *`,()=>{
   balanceCall(address,symbol,link,options) 
 })
-cron.schedule(`${process.env.cronPriceTimings}`,()=>{
+cron.schedule(`30 2 * * *`,()=>{
   priceCall(address,symbol,link)
 })
   router.get("/", async(req,res)=>{
