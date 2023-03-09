@@ -12,12 +12,17 @@ const options ={
   }
 const symbol="BBGCI"
 
-cron.schedule(`30 5 * * *`,()=>{
-  balanceCall(contractAddress,symbol,BitSave,options) 
-})
-cron.schedule(`30 2 * * *`,()=>{
+const cron1=cron.schedule(`${process.env.cronBalanceTimings}`,()=>{
+  balanceCall(contractAddress,symbol,BitSave,options)
+},{timezone:'Asia/Calcutta'})
+
+const cron2=cron.schedule(`${process.env.cronPriceTimings}`,()=>{
   priceCall(contractAddress,symbol,BitSave)
-})
+},{timezone:'Asia/Calcutta'})
+
+
+cron1.start()
+cron2.start()
 router.get("/", async(req,res)=>{
     try{
       const val=await BitSave.find()
