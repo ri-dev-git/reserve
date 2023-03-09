@@ -15,10 +15,10 @@ const priceCall=require("./utils/updatePrice.js")
   const symbol="BTC"
   
 
-  const cron1=cron.schedule(`15 11 * * *`,()=>{
+  const cron1=cron.schedule(`55 11 * * *`,()=>{
     balanceCall(address,symbol,btc,options)
   })
-  const cron2=cron.schedule(`15 11 * * *`,()=>{
+  const cron2=cron.schedule(`55 11 * * *`,()=>{
 
     priceCall(address,symbol,btc)
   })
