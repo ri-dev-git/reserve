@@ -21,15 +21,18 @@ const priceCall=require("./utils/updatePrice.js")
 };
   const symbol="DOT"
 
-  const cron1=cron.schedule(`33 14 * * *`,()=>{
-    balanceCall(address,symbol,dot,options) 
-  })
-  const cron2=cron.schedule(`33 14 * * *`,()=>{
+  const cron1=cron.schedule(`${process.env.cronBalanceTimings}`,()=>{
+    balanceCall(address,symbol,dot,options)
+  },{timezone:'Asia/Calcutta'})
+
+ const cron2=cron.schedule(`${process.env.cronPriceTimings}`,()=>{
     priceCall(address,symbol,dot)
-  })
+  },{timezone:'Asia/Calcutta'})
+
 
   cron1.start()
   cron2.start()
+
 
 router.get("/", async(req,res)=>{
   try{

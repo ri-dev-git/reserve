@@ -14,12 +14,18 @@ const options ={
 }
 const symbol="LTC"
 
-cron.schedule(`30 5 * * *`,()=>{
-  balanceCall(address,symbol,ltc,options) 
-})
-cron.schedule(`30 2 * * *`,()=>{
+const cron1=cron.schedule(`${process.env.cronBalanceTimings}`,()=>{
+  balanceCall(address,symbol,ltc,options)
+},{timezone:'Asia/Calcutta'})
+
+const cron2=cron.schedule(`${process.env.cronPriceTimings}`,()=>{
   priceCall(address,symbol,ltc)
-})
+},{timezone:'Asia/Calcutta'})
+
+
+cron1.start()
+cron2.start()
+
   router.get("/", async(req,res)=>{
     try{
       const val=await ltc.find()
