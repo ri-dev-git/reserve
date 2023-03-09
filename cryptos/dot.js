@@ -20,7 +20,7 @@ const priceCall=require("./utils/updatePrice.js")
     }
 };
   const symbol="DOT"
-  
+
   cron.schedule(`30 10 * * *`,()=>{
     balanceCall(address,symbol,dot,options) 
   })
