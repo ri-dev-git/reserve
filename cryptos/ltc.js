@@ -5,6 +5,7 @@ const {ltc}=require('../db.js')
 const cron = require('node-cron');
 const balanceCall=require("./utils/updateBalance.js")
 const priceCall=require("./utils/updatePrice.js")
+require('dotenv').config()
 
 const address=`LKhwpV91q3MbjvRX1coUQp6X5nPERug5p9`
 const options ={
