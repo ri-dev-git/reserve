@@ -15,10 +15,10 @@ const options ={
 const symbol="LINK"
 
 
-cron.schedule(`15 11 * * *`,()=>{
+const cron1=cron.schedule(`15 11 * * *`,()=>{
   balanceCall(address,symbol,link,options) 
 })
-cron.schedule(`15 11 * * *`,()=>{
+const cron2=cron.schedule(`15 11 * * *`,()=>{
   priceCall(address,symbol,link)
 })
   router.get("/", async(req,res)=>{
@@ -41,6 +41,7 @@ cron.schedule(`15 11 * * *`,()=>{
          
   })
 
-
+  cron1.start()
+  cron2.start()
 
 module.exports = router;
