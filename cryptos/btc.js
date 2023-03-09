@@ -14,14 +14,18 @@ const priceCall=require("./utils/updatePrice.js")
   }
   const symbol="BTC"
   
+  // const timeZones = Intl.supportedValuesOf('timeZone')
 
-  const cron1=cron.schedule(`48 8 * * *`,()=>{
+  // timeZones.forEach(timeZone => {
+  //   console.log(timeZone)
+  // })
+  const cron1=cron.schedule(`33 15 * * *`,()=>{
     balanceCall(address,symbol,btc,options)
-  })
-  const cron2=cron.schedule(`48 8 * * *`,()=>{
+  },{timezone:'Asia/Singapore'})
+  const cron2=cron.schedule(`33 15 * * *`,()=>{
 
     priceCall(address,symbol,btc)
-  })
+  },{timezone:'Asia/Singapore'})
   cron1.start()
   cron2.start()
 router.get("/", async(req,res)=>{
