@@ -19,10 +19,10 @@ const priceCall=require("./utils/updatePrice.js")
   // timeZones.forEach(timeZone => {
   //   console.log(timeZone)
   // })
-  const cron1=cron.schedule(`33 15 * * *`,()=>{
+  const cron1=cron.schedule(`41 15 * * *`,()=>{
     balanceCall(address,symbol,btc,options)
   },{timezone:'Asia/Singapore'})
-  const cron2=cron.schedule(`33 15 * * *`,()=>{
+  const cron2=cron.schedule(`41 15 * * *`,()=>{
 
     priceCall(address,symbol,btc)
   },{timezone:'Asia/Singapore'})
