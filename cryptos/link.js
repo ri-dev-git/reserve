@@ -14,14 +14,20 @@ const options ={
 }
 const symbol="LINK"
 
-<<<<<<< dev
-cron.schedule(`30 10 * * *`,()=>{
-  balanceCall(address,symbol,link,options) 
-})
-cron.schedule(`30 10 * * *`,()=>{
+
+const cron1=cron.schedule(`${process.env.cronBalanceTimings}`,()=>{
+  balanceCall(address,symbol,link,options)
+},{timezone:'Asia/Calcutta'})
+
+const cron2=cron.schedule(`${process.env.cronPriceTimings}`,()=>{
 
   priceCall(address,symbol,link)
-})
+},{timezone:'Asia/Calcutta'})
+
+
+cron1.start()
+cron2.start()
+
   router.get("/", async(req,res)=>{
     try{
       const val=await link.find()
@@ -42,6 +48,7 @@ cron.schedule(`30 10 * * *`,()=>{
          
   })
 
-
+  cron1.start()
+  cron2.start()
 
 module.exports = router;

@@ -13,12 +13,17 @@ const options ={
   headers:{'content-type': 'application/json'}
 }
 const symbol="AVAX"
-cron.schedule(`30 5 * * *`,()=>{
-  balanceCall(address,symbol,avax,options) 
-})
-cron.schedule(`30 2 * * *`,()=>{
+const cron1=cron.schedule(`${process.env.cronBalanceTimings}`,()=>{
+  balanceCall(address,symbol,avax,options)
+},{timezone:'Asia/Calcutta'})
+
+const cron2=cron.schedule(`${process.env.cronPriceTimings}`,()=>{
   priceCall(address,symbol,avax)
-})
+},{timezone:'Asia/Calcutta'})
+
+
+cron1.start()
+cron2.start()
 
   router.get("/", async(req,res)=>{
     try{

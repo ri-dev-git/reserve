@@ -15,13 +15,17 @@ const options ={
 }
 const symbol="UNI"
 
-cron.schedule(`30 5 * * *`,()=>{
-  balanceCall(address,symbol,uni,options) 
-})
-cron.schedule(`30 2 * * *`,()=>{
-  priceCall(address,symbol,uni)
-})
+const cron1=cron.schedule(`${process.env.cronBalanceTimings}`,()=>{
+  balanceCall(address,symbol,uni,options)
+},{timezone:'Asia/Calcutta'})
 
+const cron2=cron.schedule(`${process.env.cronPriceTimings}`,()=>{
+  priceCall(address,symbol,uni)
+},{timezone:'Asia/Calcutta'})
+
+
+cron1.start()
+cron2.start()
 
   router.get("/", async(req,res)=>{
     try{

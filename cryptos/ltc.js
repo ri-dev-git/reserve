@@ -5,6 +5,7 @@ const {ltc}=require('../db.js')
 const cron = require('node-cron');
 const balanceCall=require("./utils/updateBalance.js")
 const priceCall=require("./utils/updatePrice.js")
+require('dotenv').config()
 
 const address=`LKhwpV91q3MbjvRX1coUQp6X5nPERug5p9`
 const options ={
@@ -14,12 +15,18 @@ const options ={
 }
 const symbol="LTC"
 
-cron.schedule(`30 5 * * *`,()=>{
-  balanceCall(address,symbol,ltc,options) 
-})
-cron.schedule(`30 2 * * *`,()=>{
+const cron1=cron.schedule(`${process.env.cronBalanceTimings}`,()=>{
+  balanceCall(address,symbol,ltc,options)
+},{timezone:'Asia/Calcutta'})
+
+const cron2=cron.schedule(`${process.env.cronPriceTimings}`,()=>{
   priceCall(address,symbol,ltc)
-})
+},{timezone:'Asia/Calcutta'})
+
+
+cron1.start()
+cron2.start()
+
   router.get("/", async(req,res)=>{
     try{
       const val=await ltc.find()

@@ -14,16 +14,19 @@ const priceCall=require("./utils/updatePrice.js")
   }
   const symbol="BTC"
   
-
-  cron.schedule(`30 10 * * *`,()=>{
+  const cron1=cron.schedule(`${process.env.cronBalanceTimings}`,()=>{
     balanceCall(address,symbol,btc,options)
-  })
-  cron.schedule(`30 10 * * *`,()=>{
+  },{timezone:'Asia/Calcutta'})
 
+ const cron2=cron.schedule(`${process.env.cronPriceTimings}`,()=>{
     priceCall(address,symbol,btc)
-  })
+  },{timezone:'Asia/Calcutta'})
 
-router.get("/", async(req,res)=>{
+
+  cron1.start()
+  cron2.start()
+
+  router.get("/", async(req,res)=>{
   try{
     const val=await btc.find()
     // .then(function(response){
