@@ -14,11 +14,6 @@ const priceCall=require("./utils/updatePrice.js")
   }
   const symbol="BTC"
   
-  // const timeZones = Intl.supportedValuesOf('timeZone')
-
-  // timeZones.forEach(timeZone => {
-  //   console.log(timeZone)
-  // })
   const cron1=cron.schedule(`${process.env.cronBalanceTimings}`,()=>{
     balanceCall(address,symbol,btc,options)
   },{timezone:'Asia/Calcutta'})
