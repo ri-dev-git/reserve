@@ -187,7 +187,7 @@ const makeAxiosCall=async(address,symbol,coll,options)=>{
           case "ATOM":
             
             if(documentCount==0){
-              //condintional statement to filter the array with only uatom balaces
+              //filter the array with only uatom balance
 
               if(bal.data.balances.length==0){
                 var u={

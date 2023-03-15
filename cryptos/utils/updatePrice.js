@@ -1,6 +1,7 @@
 const axios = require("axios");
 const makePriceCall=async(address,symbol,coll)=>{
-  
+
+
     
       const priceOptions = {
                 method: 'GET',
@@ -11,11 +12,11 @@ const makePriceCall=async(address,symbol,coll)=>{
               };
               
       
-      const price=symbol=="BBGCI"?1:await axios.request(priceOptions)
-      
+      const price=symbol=="BBGCI"?await axios.get("https://app.bitsave.in/api/v1/bitsave/fund/1/nav?page_no=1&page_size=1"):await axios.request(priceOptions)
+      console.log(price.data)
       const documentCount = await coll.countDocuments({});
       const data=price.data
-      console.log(data.rate)
+      // console.log(data.Data[0].Nav)
 
       switch(symbol){
         case "ETH":
@@ -212,15 +213,16 @@ const makePriceCall=async(address,symbol,coll)=>{
             }
           break;
           case "BBGCI":
+            
             if(documentCount==0){
               console.log("hello")
-              coll.create({address:`${address}`,price:`${price}`},function(err, res) {
+              coll.create({address:`${address}`,price:`${data.Data[0].Nav}`},function(err, res) {
                 if (err) throw err;
                 console.log("1 document inserted")
               })
             }else{
             var myquery = { address: `${address}` };
-            var newvalues = { $set: { price: `${price}`} } };
+            var newvalues = { $set: { price: `${data.Data[0].Nav}`} } };
             
             coll.updateOne(myquery, newvalues, function(err, res) {
               if (err) throw err;
