@@ -20,6 +20,7 @@ const cron1=cron.schedule(`${process.env.cronBalanceTimings}`,()=>{
 },{timezone:'Asia/Calcutta'})
 
 const cron2=cron.schedule(`${process.env.cronPriceTimings}`,()=>{
+
   priceCall(address,symbol,link)
 },{timezone:'Asia/Calcutta'})
 

@@ -25,8 +25,9 @@ const priceCall=require("./utils/updatePrice.js")
     balanceCall(address,symbol,dot,options)
   },{timezone:'Asia/Calcutta'})
 
-  const cron2=cron.schedule(`${process.env.cronPriceTimings}`,()=>{
-   priceCall(address,symbol,dot)
+ const cron2=cron.schedule(`${process.env.cronPriceTimings}`,()=>{
+
+    priceCall(address,symbol,dot)
   },{timezone:'Asia/Calcutta'})
 
 
