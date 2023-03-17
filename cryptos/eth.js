@@ -13,12 +13,12 @@ const options ={
 }
 const symbol="ETH"
 
-const cron1=cron.schedule(`${process.env.cronBalanceTimings}`,()=>{
-  balanceCall(address,symbol,eth,options)
+const cron1=cron.schedule(`${process.env.cronBalanceTimings}`,async()=>{
+  await balanceCall(address,symbol,eth,options)
 },{timezone:'Asia/Calcutta'})
 
-const cron2=cron.schedule(`${process.env.cronPriceTimings}`,()=>{
-  priceCall(address,symbol,eth)
+const cron2=cron.schedule(`${process.env.cronPriceTimings}`,async()=>{
+  await priceCall(address,symbol,eth)
 },{timezone:'Asia/Calcutta'})
 
 
