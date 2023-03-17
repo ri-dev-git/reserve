@@ -71,164 +71,164 @@ const makePriceCall=async(address,symbol,coll)=>{
               
               }
             break;
-        case "DOT":
-            if(documentCount==0){
+        // case "DOT":
+        //     if(documentCount==0){
   
-                console.log("hello")
-                  coll.create({address:`${address}`,price:`${data.rate}`},function(err, res) {
-                    if (err) throw err;
-                    console.log("1 document inserted")
-                  })
-            }else{
-                var myquery = { address: `${address}` };
-                var newvalues = { $set: {price:`${data.rate}`} };
+        //         console.log("hello")
+        //           coll.create({address:`${address}`,price:`${data.rate}`},function(err, res) {
+        //             if (err) throw err;
+        //             console.log("1 document inserted")
+        //           })
+        //     }else{
+        //         var myquery = { address: `${address}` };
+        //         var newvalues = { $set: {price:`${data.rate}`} };
                 
-                coll.updateOne(myquery, newvalues, function(err, res) {
-                  if (err) throw err;
-                })
+        //         coll.updateOne(myquery, newvalues, function(err, res) {
+        //           if (err) throw err;
+        //         })
                 
-              }
-            break;
-        case "SOL":
-            if(documentCount==0){
-                console.log("hello")
-                  coll.create({address:`${address}`,price:`${data.rate}`},function(err, res) {
-                    if (err) throw err;
-                    console.log("1 document inserted")
-                  })
-            }else{
-                var myquery = { address: `${address}` };
-                var newvalues = { $set: {price:`${data.rate}` } };
+        //       }
+        //     break;
+        // case "SOL":
+        //     if(documentCount==0){
+        //         console.log("hello")
+        //           coll.create({address:`${address}`,price:`${data.rate}`},function(err, res) {
+        //             if (err) throw err;
+        //             console.log("1 document inserted")
+        //           })
+        //     }else{
+        //         var myquery = { address: `${address}` };
+        //         var newvalues = { $set: {price:`${data.rate}` } };
                 
-                coll.updateOne(myquery, newvalues, function(err, res) {
-                  if (err) throw err;
-                })
+        //         coll.updateOne(myquery, newvalues, function(err, res) {
+        //           if (err) throw err;
+        //         })
                 
-              }
-            break;
-        case "ADA":
-          if(documentCount==0){
-            console.log("hello")
-              coll.create({address:`${address}`,price:`${data.rate}`},function(err, res) {
-                if (err) throw err;
-                console.log("1 document inserted")
-              })
-        }else{
-            var myquery = { address: `${address}` };
-            var newvalues = { $set: {price:`${data.rate}` } };
+        //       }
+        //     break;
+        // case "ADA":
+        //   if(documentCount==0){
+        //     console.log("hello")
+        //       coll.create({address:`${address}`,price:`${data.rate}`},function(err, res) {
+        //         if (err) throw err;
+        //         console.log("1 document inserted")
+        //       })
+        // }else{
+        //     var myquery = { address: `${address}` };
+        //     var newvalues = { $set: {price:`${data.rate}` } };
             
-            coll.updateOne(myquery, newvalues, function(err, res) {
-              if (err) throw err;
-            })
+        //     coll.updateOne(myquery, newvalues, function(err, res) {
+        //       if (err) throw err;
+        //     })
             
-          }
-        break;
-        case "AVAX":
-          if(documentCount==0){
-            console.log("hello")
-            coll.create({address:`${address}`,price:`${data.rate}`},function(err, res) {
-              if (err) throw err;
-              console.log("1 document inserted")
-            })
-          }else{
-          var myquery = { address: `${address}` };
-          var newvalues = { $set: { price: `${data.rate}` } };
+        //   }
+        // break;
+        // case "AVAX":
+        //   if(documentCount==0){
+        //     console.log("hello")
+        //     coll.create({address:`${address}`,price:`${data.rate}`},function(err, res) {
+        //       if (err) throw err;
+        //       console.log("1 document inserted")
+        //     })
+        //   }else{
+        //   var myquery = { address: `${address}` };
+        //   var newvalues = { $set: { price: `${data.rate}` } };
           
-          coll.updateOne(myquery, newvalues, function(err, res) {
-            if (err) throw err;
-          })
+        //   coll.updateOne(myquery, newvalues, function(err, res) {
+        //     if (err) throw err;
+        //   })
           
-          }
-        break;
-        case "LTC":
-          if(documentCount==0){
-            console.log("hello")
-              coll.create({address:`${address}`,price:`${data.rate}`},function(err, res) {
-                if (err) throw err;
-                console.log("1 document inserted")
-              })
-        }else{
-            var myquery = { address: `${address}` };
-            var newvalues = { $set: {price:`${data.rate}` } };
+        //   }
+        // break;
+        // case "LTC":
+        //   if(documentCount==0){
+        //     console.log("hello")
+        //       coll.create({address:`${address}`,price:`${data.rate}`},function(err, res) {
+        //         if (err) throw err;
+        //         console.log("1 document inserted")
+        //       })
+        // }else{
+        //     var myquery = { address: `${address}` };
+        //     var newvalues = { $set: {price:`${data.rate}` } };
             
-            coll.updateOne(myquery, newvalues, function(err, res) {
-              if (err) throw err;
-            })
+        //     coll.updateOne(myquery, newvalues, function(err, res) {
+        //       if (err) throw err;
+        //     })
             
-          }
-        break;
-        case "LINK":
-          if(documentCount==0){
-            console.log("hello")
-            coll.create({address:`${address}`,price:`${data.rate}`},function(err, res) {
-              if (err) throw err;
-              console.log("1 document inserted")
-            })
-          }else{
-          var myquery = { address: `${address}` };
-          var newvalues = { $set: { price: `${data.rate}` } };
+        //   }
+        // break;
+        // case "LINK":
+        //   if(documentCount==0){
+        //     console.log("hello")
+        //     coll.create({address:`${address}`,price:`${data.rate}`},function(err, res) {
+        //       if (err) throw err;
+        //       console.log("1 document inserted")
+        //     })
+        //   }else{
+        //   var myquery = { address: `${address}` };
+        //   var newvalues = { $set: { price: `${data.rate}` } };
           
-          coll.updateOne(myquery, newvalues, function(err, res) {
-            if (err) throw err;
-          })
+        //   coll.updateOne(myquery, newvalues, function(err, res) {
+        //     if (err) throw err;
+        //   })
           
-          }
-          break;
-          case "UNI":
-            if(documentCount==0){
-              console.log("hello")
-              coll.create({address:`${address}`,price:`${data.rate}`},function(err, res) {
-                if (err) throw err;
-                console.log("1 document inserted")
-              })
-            }else{
-            var myquery = { address: `${address}` };
-            var newvalues = { $set: { price: `${data.rate}` } };
+        //   }
+        //   break;
+        //   case "UNI":
+        //     if(documentCount==0){
+        //       console.log("hello")
+        //       coll.create({address:`${address}`,price:`${data.rate}`},function(err, res) {
+        //         if (err) throw err;
+        //         console.log("1 document inserted")
+        //       })
+        //     }else{
+        //     var myquery = { address: `${address}` };
+        //     var newvalues = { $set: { price: `${data.rate}` } };
             
-            coll.updateOne(myquery, newvalues, function(err, res) {
-              if (err) throw err;
-            })
+        //     coll.updateOne(myquery, newvalues, function(err, res) {
+        //       if (err) throw err;
+        //     })
             
-            }
-            break;
-          case "ATOM":
+        //     }
+        //     break;
+        //   case "ATOM":
             
-            if(documentCount==0){
+        //     if(documentCount==0){
              
-              console.log("hello")
-              coll.create({address:`${address}`,price:`${data.rate}`},function(err, res) {
-                if (err) throw err;
-                console.log("1 document inserted")
-              })
-            }else{
+        //       console.log("hello")
+        //       coll.create({address:`${address}`,price:`${data.rate}`},function(err, res) {
+        //         if (err) throw err;
+        //         console.log("1 document inserted")
+        //       })
+        //     }else{
 
-              var myquery = { address: `${address}` };
+        //       var myquery = { address: `${address}` };
             
-            var newvalues = { $set: { price: `${data.rate}` } };
+        //     var newvalues = { $set: { price: `${data.rate}` } };
             
-            coll.updateOne(myquery, newvalues, function(err, res) {
-              if (err) throw err;
-            })
+        //     coll.updateOne(myquery, newvalues, function(err, res) {
+        //       if (err) throw err;
+        //     })
             
-            }
-          break;
-          case "BBGCI":
+        //     }
+        //   break;
+        //   case "BBGCI":
             
-            if(documentCount==0){
-              console.log("hello")
-              coll.create({address:`${address}`,price:`${data.Data[0].Nav}`},function(err, res) {
-                if (err) throw err;
-                console.log("1 document inserted")
-              })
-            }else{
-            var myquery = { address: `${address}` };
-            var newvalues = { $set: { price: `${data.Data[0].Nav}`} } };
+        //     if(documentCount==0){
+        //       console.log("hello")
+        //       coll.create({address:`${address}`,price:`${data.Data[0].Nav}`},function(err, res) {
+        //         if (err) throw err;
+        //         console.log("1 document inserted")
+        //       })
+        //     }else{
+        //     var myquery = { address: `${address}` };
+        //     var newvalues = { $set: { price: `${data.Data[0].Nav}`} } };
             
-            coll.updateOne(myquery, newvalues, function(err, res) {
-              if (err) throw err;
-            })
+        //     coll.updateOne(myquery, newvalues, function(err, res) {
+        //       if (err) throw err;
+        //     })
             
-            break;
+        //     break;
         }
     }
 
