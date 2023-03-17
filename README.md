@@ -4,6 +4,11 @@ The repo makes callw to multiple blcockchains to get the balance and price of th
 # Requirements
 - node
 
+# Stack used
+- nodejs
+- mongodb
+- express js
+
 # pakages installation
 `npm i`
 
