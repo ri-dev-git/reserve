@@ -1,8 +1,10 @@
 # reserve
-The repo make call to multiple chains and blockchains to get the balance and price of the crypto assets for the respective address. 
+The repo makes callw to multiple blcockchains to get the balance and price of the crypto assets for the respective native addresses. 
 
+# Requirements
+- node
 
-# installation
+# pakages installation
 `npm i`
 
 # run locally
