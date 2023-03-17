@@ -14,12 +14,12 @@ const priceCall=require("./utils/updatePrice.js")
   }
   const symbol="BTC"
   
-  const cron1=cron.schedule(`${process.env.cronBalanceTimings}`,()=>{
-    balanceCall(address,symbol,btc,options)
+  const cron1=cron.schedule(`${process.env.cronBalanceTimings}`,async()=>{
+  await balanceCall(address,symbol,btc,options)
   },{timezone:'Asia/Calcutta'})
 
- const cron2=cron.schedule(`${process.env.cronPriceTimings}`,()=>{
-    priceCall(address,symbol,btc)
+ const cron2=cron.schedule(`${process.env.cronPriceTimings}`,async()=>{
+    await priceCall(address,symbol,btc)
   },{timezone:'Asia/Calcutta'})
 
 

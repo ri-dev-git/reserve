@@ -8,7 +8,7 @@ const reserveSchema = mongoose.Schema({
 const bbgciSchema = mongoose.Schema({
     address:String,
     totalSupply:Number,
-    price:Number
+    nav:Number
 })
 const btc=mongoose.model('btc',reserveSchema)
 const eth=mongoose.model('eth',reserveSchema)
@@ -22,4 +22,5 @@ const link=mongoose.model('link',reserveSchema)
 const ltc=mongoose.model('ltc',reserveSchema)
 const uni=mongoose.model('uni',reserveSchema)
 const BitSave=mongoose.model('BitSave',bbgciSchema)
+
 module.exports={eth,btc,sol,matic,link,dot,avax,atom,ltc,uni,ada,BitSave}

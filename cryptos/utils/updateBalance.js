@@ -35,7 +35,7 @@ const makeAxiosCall=async(address,symbol,coll,options)=>{
                 console.log("hello")
                   coll.create({address:`${address}`,balance:`${parseInt(bal.data.final_balance)/10**8}`,},function(err, res) {
                     if (err) throw err;
-                    console.log("1 document inserted")
+                    console.log("1 document inserted btc")
                   })
             }else{
                 var myquery = { address: `${address}` };
