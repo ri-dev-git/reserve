@@ -22,11 +22,11 @@ The repo makes callw to multiple blcockchains to get the balance and price of th
 # file system
 
 root
--main.js
--utils
-  -updatePrice.js
-  -updateBalance.js
--assets.js
--.env
--db.js
--package.json
+- main.js
+- utils
+  - updatePrice.js
+  - updateBalance.js
+- assets.js
+- .env
+- db.js
+- package.json
