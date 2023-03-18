@@ -30,3 +30,8 @@ root
 - .env
 - db.js
 - package.json
+
+
+# blockage 
+ Ada balance returns an error
+ ![image](https://user-images.githubusercontent.com/67939540/226103043-1a18034e-31d1-4697-a890-3e1a937e68f5.png)
