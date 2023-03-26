@@ -1,49 +1,57 @@
 const express= require('express');
 const router= express.Router();
-const app = express()
-const {eth}=require('../db.js')
+const axios = require("axios");
 const cron = require('node-cron');
+const {dot}=require('../db.js')
 const balanceCall=require("./utils/updateBalance.js")
 const priceCall=require("./utils/updatePrice.js")
-const address="0x8d207B587018201efC24b288a8b87D5aEfbb9c8e"
-const options ={
-  method:"GET",
-  url:`https://api.etherscan.io/api?module=account&action=balance&address=${address}&tag=latest&apikey=${process.env.etherscan_api}`,
-  headers:{'content-type': 'application/json'}
-}
-const symbol="ETH"
 
-const cron1=cron.schedule(`${process.env.cronBalanceTimings}`,async()=>{
-await  balanceCall(address,symbol,eth,options)
-},{timezone:'Asia/Calcutta'})
-
-const cron2=cron.schedule(`${process.env.cronPriceTimings}`,async()=>{
-  await priceCall(address,symbol,eth)
-},{timezone:'Asia/Calcutta'})
-
-
-cron1.start()
-cron2.start()
-
-  router.get("/", async(req,res)=>{
-    try{
-      const val=await eth.find()
-      // .then(function(response){
-        res.json(val[0])
-      // });
-      // console.log(val[0])
-    
-    }catch(e){ 
-      console.log(e)
-      res.status(404).json(
-        {
-            "status":404,
-            "reason":"Page Not Found"
-        }
-    )
+  const address="1euducCmquVEKxHPQePAoqQi9oHNtkesP3vNu1jcGMoW9rk"
+  const options ={
+    method: 'post',
+    url: `https://polkadot.api.subscan.io/api/v2/scan/search`,
+    headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'X-API-Key':`${process.env.dotscan_api}`,
+    },
+    data:{
+        "key":`${address}`
     }
-         
-  })
+};
+  const symbol="DOT"
+
+  const cron1=cron.schedule(`${process.env.cronBalanceTimings}`,async ()=>{
+    await balanceCall(address,symbol,dot,options)
+  },{timezone:'Asia/Calcutta'})
+
+ const cron2=cron.schedule(`${process.env.cronPriceTimings}`,async()=>{
+  await priceCall(address,symbol,dot)
+  },{timezone:'Asia/Calcutta'})
+
+
+  cron1.start()
+  cron2.start()
+
+
+router.get("/", async(req,res)=>{
+  try{
+    const val=await dot.find()
+    // .then(function(response){
+      res.json(val[0])
+    // });
+    // console.log(val[0])
   
+  }catch(e){ 
+    console.log(e)
+    res.status(404).json(
+      {
+          "status":404,
+          "reason":"Page Not Found"
+      }
+  )
+  }
+       
+})
 
 module.exports = router;
