@@ -13,12 +13,12 @@ const options ={
   }
 const symbol="MATIC"
 
-const cron1=cron.schedule(`${process.env.cronBalanceTimings}`,()=>{
-  balanceCall(address,symbol,matic,options)
+const cron1=cron.schedule(`${process.env.cronBalanceTimings}`,async()=>{
+  await balanceCall(address,symbol,matic,options)
 },{timezone:'Asia/Calcutta'})
 
-const cron2=cron.schedule(`${process.env.cronPriceTimings}`,()=>{
-  priceCall(address,symbol,matic)
+const cron2=cron.schedule(`${process.env.cronPriceTimings}`,async()=>{
+  await priceCall(address,symbol,matic)
 },{timezone:'Asia/Calcutta'})
 
 

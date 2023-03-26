@@ -15,12 +15,12 @@ const options ={
 }
 const symbol="LTC"
 
-const cron1=cron.schedule(`${process.env.cronBalanceTimings}`,()=>{
-  balanceCall(address,symbol,ltc,options)
+const cron1=cron.schedule(`${process.env.cronBalanceTimings}`,async()=>{
+  await balanceCall(address,symbol,ltc,options)
 },{timezone:'Asia/Calcutta'})
 
-const cron2=cron.schedule(`${process.env.cronPriceTimings}`,()=>{
-  priceCall(address,symbol,ltc)
+const cron2=cron.schedule(`${process.env.cronPriceTimings}`,async()=>{
+await  priceCall(address,symbol,ltc)
 },{timezone:'Asia/Calcutta'})
 
 

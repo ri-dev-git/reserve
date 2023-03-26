@@ -15,12 +15,12 @@ const options ={
 }
 const symbol="UNI"
 
-const cron1=cron.schedule(`${process.env.cronBalanceTimings}`,()=>{
-  balanceCall(address,symbol,uni,options)
+const cron1=cron.schedule(`${process.env.cronBalanceTimings}`,async()=>{
+  await balanceCall(address,symbol,uni,options)
 },{timezone:'Asia/Calcutta'})
 
-const cron2=cron.schedule(`${process.env.cronPriceTimings}`,()=>{
-  priceCall(address,symbol,uni)
+const cron2=cron.schedule(`${process.env.cronPriceTimings}`,async ()=>{
+  await priceCall(address,symbol,uni)
 },{timezone:'Asia/Calcutta'})
 
 
