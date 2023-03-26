@@ -19,8 +19,8 @@ const priceCall=require("./utils/updatePrice.js")
   };
   const symbol="ADA"
   
+  balanceCall(address,symbol,ada,options)
   const cron1=cron.schedule(`${process.env.cronBalanceTimings}`,()=>{
-    balanceCall(address,symbol,ada,options)
   },{timezone:'Asia/Calcutta'})
   
   const cron2=cron.schedule(`${process.env.cronPriceTimings}`,()=>{

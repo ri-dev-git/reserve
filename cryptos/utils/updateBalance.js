@@ -30,40 +30,40 @@ const makeAxiosCall=async(address,symbol,coll,options)=>{
               
               }
             break;
-        case "BTC":
-            if(documentCount==0){
-                console.log("hello")
-                  coll.create({address:`${address}`,balance:`${parseInt(bal.data.final_balance)/10**8}`,},function(err, res) {
-                    if (err) throw err;
-                    console.log("1 document inserted btc")
-                  })
-            }else{
-                var myquery = { address: `${address}` };
-                var newvalues = { $set: {balance:`${parseInt(bal.data.final_balance)/10**8}` } };
+        // case "BTC":
+        //     if(documentCount==0){
+        //         console.log("hello")
+        //           coll.create({address:`${address}`,balance:`${parseInt(bal.data.final_balance)/10**8}`,},function(err, res) {
+        //             if (err) throw err;
+        //             console.log("1 document inserted btc")
+        //           })
+        //     }else{
+        //         var myquery = { address: `${address}` };
+        //         var newvalues = { $set: {balance:`${parseInt(bal.data.final_balance)/10**8}` } };
                 
-                coll.updateOne(myquery, newvalues, function(err, res) {
-                  if (err) throw err;
-                })
+        //         coll.updateOne(myquery, newvalues, function(err, res) {
+        //           if (err) throw err;
+        //         })
                 
-              }
-            break;
-        case "MATIC":
-            if(documentCount==0){
-                console.log("hello")
-                coll.create({address:`${address}`,balance:`${parseInt(bal.data.result)/10**18}`},function(err, res) {
-                  if (err) throw err;
-                  console.log("1 document inserted")
-                })
-              }else{
-              var myquery = { address: `${address}` };
-              var newvalues = { $set: { balance:`${parseInt(bal.data.result)/10**18}` } };
+        //       }
+        //     break;
+        // case "MATIC":
+        //     if(documentCount==0){
+        //         console.log("hello")
+        //         coll.create({address:`${address}`,balance:`${parseInt(bal.data.result)/10**18}`},function(err, res) {
+        //           if (err) throw err;
+        //           console.log("1 document inserted")
+        //         })
+        //       }else{
+        //       var myquery = { address: `${address}` };
+        //       var newvalues = { $set: { balance:`${parseInt(bal.data.result)/10**18}` } };
               
-              coll.updateOne(myquery, newvalues, function(err, res) {
-                if (err) throw err;
-              })
+        //       coll.updateOne(myquery, newvalues, function(err, res) {
+        //         if (err) throw err;
+        //       })
               
-              }
-            break;
+        //       }
+        //     break;
         // case "DOT":
         //     if(documentCount==0){
   
