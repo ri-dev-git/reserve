@@ -21,12 +21,12 @@ const priceCall=require("./utils/updatePrice.js")
   };
   const symbol="SOL"
   
-  const cron1=cron.schedule(`${process.env.cronBalanceTimings}`,()=>{
-    balanceCall(address,symbol,sol,options)
+  const cron1=cron.schedule(`${process.env.cronBalanceTimings}`,async()=>{
+    await balanceCall(address,symbol,sol,options)
   },{timezone:'Asia/Calcutta'})
   
-  const cron2=cron.schedule(`${process.env.cronPriceTimings}`,()=>{
-    priceCall(address,symbol,sol)
+  const cron2=cron.schedule(`${process.env.cronPriceTimings}`,async ()=>{
+    await priceCall(address,symbol,sol)
   },{timezone:'Asia/Calcutta'})
   
   

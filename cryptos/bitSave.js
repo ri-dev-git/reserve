@@ -12,12 +12,12 @@ const options ={
   }
 const symbol="BBGCI"
 
-const cron1=cron.schedule(`${process.env.cronBalanceTimings}`,()=>{
-  balanceCall(contractAddress,symbol,BitSave,options)
+const cron1=cron.schedule(`${process.env.cronBalanceTimings}`,async()=>{
+  await balanceCall(contractAddress,symbol,BitSave,options)
 },{timezone:'Asia/Calcutta'})
 
-const cron2=cron.schedule(`${process.env.cronPriceTimings}`,()=>{
-  priceCall(contractAddress,symbol,BitSave)
+const cron2=cron.schedule(`${process.env.cronPriceTimings}`,async()=>{
+  await priceCall(contractAddress,symbol,BitSave)
 },{timezone:'Asia/Calcutta'})
 
 

@@ -14,7 +14,7 @@ const options ={
 const symbol="ETH"
 
 const cron1=cron.schedule(`${process.env.cronBalanceTimings}`,async()=>{
-  await balanceCall(address,symbol,eth,options)
+await  balanceCall(address,symbol,eth,options)
 },{timezone:'Asia/Calcutta'})
 
 const cron2=cron.schedule(`${process.env.cronPriceTimings}`,async()=>{

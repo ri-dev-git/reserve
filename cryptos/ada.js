@@ -14,7 +14,7 @@
 //       headers: {
 //           // 'Content-Type': 'application/json',
 //           // 'Accept': 'application/json',
-//           "project_id":"mainnetul8wuKbWgQnFYPIwsgQ6drwykq1OXsX5",
+//           "project_id":`${process.env.adaAPIKey}`,
 //       }
 //   };
 //   const symbol="ADA"
